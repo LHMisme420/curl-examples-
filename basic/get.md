@@ -122,3 +122,60 @@ curl --connect-timeout 5 \
 curl -k https://self-signed-bad-ssl.com
 # or
 curl --insecure https://self-signed-bad-ssl.com
+
+### real-world/
+**real-world/github-api-create-issue.md**
+```markdown
+# GitHub API – Create issue
+
+```bash
+curl -X POST https://api.github.com/repos/octocat/Hello-World/issues \
+  -H "Authorization: token YOUR_GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github.v3+json" \
+  -d '{
+    "title": "Found a bug",
+    "body": "I'm having a problem with this.",
+    "labels": ["bug"]
+  }'
+
+**real-world/openai-chat-completion.md**
+```markdown
+# OpenAI Chat Completion (GPT-4o)
+
+```bash
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4o",
+    "messages": [{"role": "user", "content": "Explain quantum computing in 2 sentences"}],
+    "temperature": 0.7
+  }'
+
+**real-world/stripe-charge.md**
+```markdown
+# Stripe – Create charge
+
+```bash
+curl https://api.stripe.com/v1/charges \
+  -u sk_live_XXXXXXXXXXXXXXXXXXXXXXXX: \
+  -d amount=999 \
+  -d currency=usd \
+  -d source=tok_visa \
+  -d description="Example charge"
+
+**real-world/discord-webhook.md**
+```markdown
+# Discord Webhook
+
+```bash
+curl -H "Content-Type: application/json" \
+  -d '{"username": "AlertBot", "content": "Server is down!"}' \
+  https://discord.com/api/webhooks/1234567890/AbCdefGhIJK
+curl -X PUT -T report.pdf "https://my-bucket.s3.amazonaws.com/report.pdf?X-Amz-Algorithm=..."
+
+Just run this in your terminal to create everything instantly:
+
+```bash
+mkdir -p curl-examples/{basic,auth,advanced,real-world}
+# Then paste all the files above using your editor or a script
